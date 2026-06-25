@@ -12,8 +12,7 @@ $htmlDir = $lang === 'ar' ? 'rtl' : 'ltr';
 // Basic translations for initial page load
 $translations = [
     'ar' => [
-        'title' => 'أداة جداول الاختبارات',
-        'subtitle' => 'جدول اختبارات منتصف الفصل - كلية إدارة الأعمال - أكتوبر 2025',
+        'subtitle' => 'جدول اختبارات منتصف الفصل الدراسي',
         'searchPlaceholder' => 'ابحث عن مقرر أو رمز',
         'levelAll' => 'كل المستويات',
         'categoryAll' => 'كل التصنيفات',
@@ -26,9 +25,9 @@ $translations = [
         'fullScheduleBtn' => '📅 الجدول الكامل',
         'reportBtn' => 'إبلاغ عن تعديل',
         'viewToggleLabel' => 'بطاقات / جدول',
-        'program' => 'تخصص هذه المقررات ضمن برنامج إدارة الأعمال (Management). للمعلومات:',
+        'program' => 'تخصص هذه المقررات ضمن البرنامج الدراسي. للمعلومات:',
         'programLink' => 'رابط البرنامج',
-        'footerText' => 'Built by SHJRH SERVICES',
+        'footerText' => 'أداة جداول الاختبارات',
         'searchAriaLabel' => 'بحث حي',
         'levelFilterAriaLabel' => 'تصفية حسب المستوى',
         'categoryFilterAriaLabel' => 'تصفية حسب التصنيف',
@@ -52,7 +51,7 @@ $translations = [
     ],
     'en' => [
         'title' => 'Exam Schedule Tool',
-        'subtitle' => 'Midterm Exam Schedule - Business Administration College - October 2025',
+        'subtitle' => 'Midterm Exam Schedule',
         'searchPlaceholder' => 'Search for course or code',
         'levelAll' => 'All Levels',
         'categoryAll' => 'All Categories',
@@ -65,9 +64,9 @@ $translations = [
         'fullScheduleBtn' => '📅 Full Schedule',
         'reportBtn' => 'Report Issue',
         'viewToggleLabel' => 'Cards / Table',
-        'program' => 'These courses are part of the Business Administration (Management) program. For information:',
+        'program' => 'These courses are part of the academic program. For information:',
         'programLink' => 'Program Link',
-        'footerText' => 'Built by SHJRH SERVICES',
+        'footerText' => 'Exam Schedule Tool',
         'searchAriaLabel' => 'Live search',
         'levelFilterAriaLabel' => 'Filter by level',
         'categoryFilterAriaLabel' => 'Filter by category',
@@ -102,13 +101,13 @@ $t = $translations[$lang];
     <link rel="preconnect" href="https://cdn.shjrh.xyz" crossorigin>
     <link rel="stylesheet" href="https://cdn.shjrh.xyz/fonts-44/Almarai/almarai.css">
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./faviconsbyshjrhservices.sa/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./faviconsbyshjrhservices.sa/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./faviconsbyshjrhservices.sa/favicon-16x16.png">
-    <link rel="manifest" href="./faviconsbyshjrhservices.sa/site.webmanifest">
-    <link rel="icon" type="image/png" sizes="192x192" href="./faviconsbyshjrhservices.sa/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="./faviconsbyshjrhservices.sa/android-chrome-512x512.png">
-    <link rel="shortcut icon" href="./faviconsbyshjrhservices.sa/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicons/favicon-16x16.png">
+    <link rel="manifest" href="./favicons/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="192x192" href="./favicons/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./favicons/android-chrome-512x512.png">
+    <link rel="shortcut icon" href="./favicons/favicon.ico">
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
   </head>
@@ -172,7 +171,7 @@ $t = $translations[$lang];
     </main>
 
     <footer class="container">
-      <a href="https://shjrh.sa" target="_blank" rel="noopener"><?php echo htmlspecialchars($t['footerText']); ?></a>
+      <a href="#" target="_blank" rel="noopener"><?php echo htmlspecialchars($t['footerText']); ?></a>
       <span class="separator">|</span>
       <button id="reportBtn" class="report-link"><?php echo htmlspecialchars($t['reportBtn']); ?></button>
     </footer>

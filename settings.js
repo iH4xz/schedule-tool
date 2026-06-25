@@ -10,12 +10,10 @@ window.PAGE_SETTINGS = {
     loadBtn: 'استرجاع من المتصفح'
   },
   footer: {
-    text: 'Built by Mohammed Jadaan | All rights reserved | Not affiliated with SEU | 2025 - October',
-    href: 'https://shjrh.sa/m'
+    text: 'أداة جداول الاختبارات | جميع الحقوق محفوظة',
+    href: '#'
   },
   menu: {
-    categories: ['MGT','FIN','STAT','ACC','MIS','ECON']
+    categories: ['CS','MATH','PHYS']
   }
 };
-
-

@@ -38,7 +38,7 @@
   const translations = {
     ar: {
       title: 'أداة جداول الاختبارات',
-      subtitle: 'جدول اختبارات منتصف الفصل - كلية إدارة الأعمال - أكتوبر 2025',
+      subtitle: 'جدول اختبارات منتصف الفصل الدراسي',
       searchPlaceholder: 'ابحث عن مقرر أو رمز',
       levelAll: 'كل المستويات',
       categoryAll: 'كل التصنيفات',
@@ -52,9 +52,9 @@
       fullScheduleBtn: '📅 الجدول الكامل',
       reportBtn: 'إبلاغ عن تعديل',
       viewToggleLabel: 'بطاقات / جدول',
-      program: 'تخصص هذه المقررات ضمن برنامج إدارة الأعمال (Management). للمعلومات:',
+      program: 'تخصص هذه المقررات ضمن البرنامج الدراسي. للمعلومات:',
       programLink: 'رابط البرنامج',
-      footerText: 'Built by SHJRH SERVICES',
+      footerText: 'أداة جداول الاختبارات',
       searchAriaLabel: 'بحث حي',
       levelFilterAriaLabel: 'تصفية حسب المستوى',
       categoryFilterAriaLabel: 'تصفية حسب التصنيف',
@@ -104,7 +104,7 @@
     },
     en: {
       title: 'Exam Schedule Tool',
-      subtitle: 'Midterm Exam Schedule - Business Administration College - October 2025',
+      subtitle: 'Midterm Exam Schedule',
       searchPlaceholder: 'Search for course or code',
       levelAll: 'All Levels',
       categoryAll: 'All Categories',
@@ -118,9 +118,9 @@
       fullScheduleBtn: '📅 Full Schedule',
       reportBtn: 'Report Issue',
       viewToggleLabel: 'Cards / Table',
-      program: 'These courses are part of the Business Administration (Management) program. For information:',
+      program: 'These courses are part of the academic program. For information:',
       programLink: 'Program Link',
-      footerText: 'Built by SHJRH SERVICES',
+      footerText: 'Exam Schedule Tool',
       searchAriaLabel: 'Live search',
       levelFilterAriaLabel: 'Filter by level',
       categoryFilterAriaLabel: 'Filter by category',
@@ -316,11 +316,11 @@
           loadBtn: 'استرجاع من المتصفح'
         },
         footer: {
-          text: 'Built by SHJRH SERVICES',
-          href: 'https://shjrh.sa'
+          text: 'Exam Schedule Tool',
+          href: '#'
         },
         menu: {
-          categories: ['MGT','FIN','STAT','ACC','MIS','ECON','ECOM','IT','LAW','COMM']
+          categories: ['CS','MATH','PHYS']
         }
       };
     }

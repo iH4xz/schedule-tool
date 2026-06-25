@@ -1,0 +1,16 @@
+# WordPress plugin & archives
+wp-schedule-tool/
+wp-schedule-tool*.zip
+
+# Local configuration (secrets)
+config.php
+
+# Dependency directories
+node_modules/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Temp files
+d.txt

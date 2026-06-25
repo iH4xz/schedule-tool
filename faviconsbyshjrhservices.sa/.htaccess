@@ -1,0 +1,27 @@
+# Restrict favicon CDN usage to studytracker.pro only
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Allow direct access from studytracker.pro and its subdomains
+RewriteCond %{HTTP_REFERER} !^https?://([^.]+\.)?studytracker\.pro/ [NC]
+# Also allow no referrer (e.g., browsers fetching icons without referer)
+RewriteCond %{HTTP_REFERER} !^$ [NC]
+# Block hotlinking from others
+RewriteRule . - [F]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set Cache-Control "public, max-age=31536000, immutable"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "no-referrer-when-downgrade"
+  <FilesMatch "\.(png|ico|webmanifest)$">
+    Header set Access-Control-Allow-Origin "https://studytracker.pro"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType image/png .png
+  AddType image/x-icon .ico
+  AddType application/manifest+json .webmanifest
+</IfModule>
+

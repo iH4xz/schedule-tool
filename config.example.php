@@ -1,0 +1,4 @@
+<?php
+// Configuration template - Rename to config.php and fill in your details
+define('TELEGRAM_BOT_TOKEN', 'YOUR_BOT_TOKEN_HERE');
+define('TELEGRAM_CHAT_ID', 'YOUR_CHAT_ID_HERE');

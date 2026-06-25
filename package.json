@@ -1,0 +1,13 @@
+{
+  "name": "seu-schedule-v2-tools",
+  "private": true,
+  "type": "commonjs",
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  },
+  "scripts": {
+    "convert": "node tools/convert.js \"../Midterm Exam Schedule.xlsx\""
+  }
+}
+
+

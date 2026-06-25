@@ -1,0 +1,248 @@
+# SEU Schedule Tool - Production .htaccess
+# Optimized for performance, security, and SEO
+
+# Enable rewrite engine
+RewriteEngine On
+
+# === Legacy redirects to live /sch ===
+# Redirect any old or archived app paths to the live /sch
+# Examples handled:
+#  - /sch/v1, /sch/v2, /sch/old, /sch/archive, /sch/2023, /sch/2024
+#  - /sch-old, /sch_v1, /sch-2024 at the domain root
+
+# Redirect sibling legacy directories (e.g., /sch-v2, /sch_2024) to /sch/
+RewriteCond %{REQUEST_URI} ^/(sch[-_].+)$ [NC]
+RewriteRule ^sch[-_].+/?$ /sch/ [R=301,L]
+
+# Redirect legacy subpaths under /sch to /sch/
+RewriteCond %{REQUEST_URI} ^/sch/(?:v\d+|old(?:-\w+)?|archive|\d{4})(?:/|$) [NC]
+RewriteRule ^ /sch/ [R=301,L]
+
+# Security headers
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header always append X-Frame-Options SAMEORIGIN
+    
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options nosniff
+    
+    # Enable XSS protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Referrer policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Content Security Policy (allow jsDelivr for external JS and blob workers for html2pdf)
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; script-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' https://cdn.shjrh.xyz 'unsafe-inline'; style-src-elem 'self' https://cdn.shjrh.xyz 'unsafe-inline'; font-src 'self' https://cdn.shjrh.xyz https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://cdn.jsdelivr.net data:; worker-src 'self' blob:; child-src 'self' blob:; frame-ancestors 'self';"
+    
+    # Cache control for static assets
+    <FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    # Cache control for HTML/PHP
+    <FilesMatch "\.(html|php)$">
+        Header set Cache-Control "public, max-age=3600"
+    </FilesMatch>
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+    # Compress HTML, CSS, JavaScript, Text, XML and fonts
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE application/x-font
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/x-font-otf
+    AddOutputFilterByType DEFLATE application/x-font-truetype
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE image/x-icon
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/xml
+</IfModule>
+
+# URL Rewriting
+# Redirect index.html to index.php
+RewriteCond %{THE_REQUEST} /index\.html[\s?] [NC]
+RewriteRule ^index\.html$ /index.php [R=301,L]
+
+# Pretty URLs for language switching
+RewriteRule ^([a-z]{2})/?$ index.php?lang=$1 [L,QSA]
+
+# Redirect root to Arabic version
+RewriteRule ^$ index.php?lang=ar [L,QSA]
+
+# Force HTTPS (uncomment if you have SSL)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# File access restrictions
+# Block access to sensitive files
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak|sql|conf)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Block access to data directory from web
+<Directory "data">
+    Order Allow,Deny
+    Deny from all
+</Directory>
+
+# Block access to tools directory
+<Directory "tools">
+    Order Allow,Deny
+    Deny from all
+</Directory>
+
+# Block access to .git directory
+<Directory ".git">
+    Order Allow,Deny
+    Deny from all
+</Directory>
+
+# Error pages
+ErrorDocument 404 /index.php?lang=ar
+ErrorDocument 403 /index.php?lang=ar
+
+# MIME types
+<IfModule mod_mime.c>
+    # JavaScript
+    AddType application/javascript .js
+    
+    # CSS
+    AddType text/css .css
+    
+    # JSON
+    AddType application/json .json
+    
+    # Fonts (comprehensive support)
+    AddType font/woff .woff
+    AddType font/woff2 .woff2
+    AddType application/font-woff .woff
+    AddType application/font-woff2 .woff2
+    AddType application/vnd.ms-fontobject .eot
+    AddType application/x-font-ttf .ttf
+    AddType font/opentype .otf
+    AddType font/truetype .ttf
+    AddType font/opentype .otf
+    
+    # Images
+    AddType image/svg+xml .svg
+    AddType image/webp .webp
+</IfModule>
+
+# CORS headers for font loading from CDN
+<IfModule mod_headers.c>
+    <FilesMatch "\.(woff|woff2|eot|ttf|otf)$">
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Methods "GET, OPTIONS"
+        Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+    </FilesMatch>
+</IfModule>
+
+# PHP settings (if allowed)
+<IfModule mod_php.c>
+    # Hide PHP version
+    php_flag expose_php off
+    
+    # Set timezone
+    php_value date.timezone "Asia/Riyadh"
+    
+    # Memory and execution limits
+    php_value memory_limit 128M
+    php_value max_execution_time 30
+    php_value max_input_time 30
+    
+    # File upload limits
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_file_uploads 5
+    
+    # Session settings
+    php_value session.cookie_httponly 1
+    php_value session.cookie_secure 0
+    php_value session.use_only_cookies 1
+</IfModule>
+
+# Prevent access to backup files
+<FilesMatch "\.(bak|backup|old|orig|save|swp|tmp)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Prevent access to version control files
+<FilesMatch "\.(git|svn|hg|bzr)">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Block suspicious requests
+RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} proc/self/environ [OR]
+RewriteCond %{QUERY_STRING} mosConfig_[a-zA-Z_]{1,21}(=|\%3D) [OR]
+RewriteCond %{QUERY_STRING} base64_(en|de)code[^(]*\([^)]*\) [OR]
+RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC]
+RewriteRule .* - [F]
+
+# Block bad user agents (more selective)
+RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+RewriteCond %{HTTP_USER_AGENT} ^(-|\.|') [OR]
+RewriteCond %{HTTP_USER_AGENT} ^(.*)(<|>|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^.*(nikto|sqlmap|havij|acunetix).* [NC,OR]
+RewriteCond %{HTTP_USER_AGENT} ^.*(HTTrack|clshttp|archiver|loader|harvest|extract|grab|miner).* [NC]
+RewriteRule .* - [F]
+
+# Performance optimizations
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # Fonts
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType application/x-font-ttf "access plus 1 year"
+    ExpiresByType font/opentype "access plus 1 year"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/javascript "access plus 1 year"
+    
+    # HTML and PHP
+    ExpiresByType text/html "access plus 1 hour"
+    ExpiresByType application/x-httpd-php "access plus 1 hour"
+    
+    # JSON
+    # ExpiresByType application/json "access plus 1 hour"
+</IfModule>
+<FilesMatch "\.(json)$">
+  Header set Cache-Control "max-age=60, must-revalidate"
+</FilesMatch>
+# Remove server signature
+ServerTokens Prod

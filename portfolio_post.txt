@@ -1,0 +1,79 @@
+عنوان المشروع: أداة تنظيم وجدولة اختبارات الطلاب التفاعلية (Exam Schedule Tool)
+تصنيف المشروع: تطوير ويب / أدوات تفاعلية / برمجيات مفتوحة المصدر
+
+---
+
+[Arabic / باللغة العربية]
+
+مقدمة عن المشروع:
+أداة ويب تفاعلية صُممت خصيصاً لمساعدة الطلاب في الكليات والجامعات على استعراض، ترتيب، وتخصيص جداول اختباراتهم الدراسية بسهولة وسرعة. تهدف الأداة إلى حل مشكلة الجداول الجامعية الضخمة والمعقدة، وتوفر واجهة مستخدم سلسة تمكّن كل طالب من تحديد مقرراته فقط وتوليد جدول خاص به وتنزيله كملف PDF أو نسخه كنص لمشاركته.
+
+المشكلة التي يحلها المشروع:
+عادةً ما تنشر الكليات جداول الاختبارات في ملفات PDF ضخمة أو جداول بيانات ممتلئة بمئات المواد الدراسية، مما يسبب تشتتاً كبيراً للطالب في البحث عن مواعيد اختباراته وتواريخها وتوقيت كل جلسة. هذا التطبيق يقوم بتبسيط هذه التجربة بالكامل عبر تحويل البيانات إلى نظام حي وتفاعلي.
+
+أبرز مميزات الأداة:
+1. واجهة مستخدم ثنائية اللغة: تدعم اللغتين العربية والإنجليزية بشكل كامل وتلقائي حسب تفضيل الطالب أو المتصفح.
+2. تصفية وفلترة متقدمة: إمكانية تصفية المواد حسب المستوى الدراسي، التصنيف الأكاديمي، أو مسارات التركيز التخصصي.
+3. نظام بحث حي (Live Search): يتيح الوصول للمادة فوراً بمجرد كتابة أول حرفين من اسمها أو رمزها.
+4. حفظ محلي (Local Storage): ميزة حفظ الجدول داخل المتصفح بحيث لا يفقد الطالب اختياراته عند إغلاق الصفحة أو إعادة تحميلها.
+5. تصدير ذكي وجاهز للطباعة:
+   - نسخ الجدول المحدد كلياً كنص منسق وجاهز للإرسال الفوري.
+   - تصدير الجدول بصيغة PDF بنظامين للتحجيم (أحدهما مخصص للتنسيق المطبوع A4 والآخر للتصفح الرقمي).
+6. نظام الإبلاغ الذكي والتواصل الآمن: نموذج متكامل ومحمي بأسئلة تحقق حسابية يتيح للطلاب إرسال البلاغات عن الأخطاء والتعديلات لتصل مباشرة وبشكل آمن إلى حساب المشرف عبر تطبيق تلجرام (Telegram Bot).
+
+التقنيات المستخدمة (Tech Stack):
+- الواجهة الأمامية: HTML5, CSS3 بتصميم مخصص ومتجاوب يدعم الوضع الداكن (Dark Mode) والهواتف الذكية.
+- منطق الواجهة: JavaScript (Vanilla JS) لضمان الخفة والسرعة الفائقة دون أي مكتبات ثقيلة.
+- البرمجة الخلفية: PHP لتهيئة اللغات ومعالجة الطلبات وإرسال الإشعارات المشفرة.
+- تخزين البيانات: ملفات JSON المهيكلة التي تسهّل على مديري النظام تحديث الجداول أو قائمة المقررات دون الحاجة لقواعد بيانات معقدة.
+
+معايير الأمان والحماية المطبقة في المشروع:
+- فصل بيانات الاتصال الحساسة (Telegram Bot Credentials) في ملف خارجي محمي (config.php) مستثنى بالكامل من الرفع والمشاركة.
+- استخدام نظام تشفير مدخلات المستخدمين (htmlspecialchars) قبل معالجتها أو إرسالها لتيليجرام لحماية الخادم من الثغرات البرمجية والرموز البرمجية الضارة، وتفادي توقف معالجة الرسائل بسبب الرموز الخاصة.
+- إعداد ملف حماية متكامل (.htaccess) لحظر الوصول العام المباشر لمجلدات البيانات والمجلدات التطويرية وضبط مستويات التخزين المؤقت وحماية الخادم.
+
+الترخيص والمشاريع المفتوحة:
+المشروع مفتوح المصدر بالكامل ومرخص برخصة (GPL-3.0) لإتاحة الفرصة للمطورين الآخرين لتعديله وتطويره ليناسب جامعاتهم.
+
+رابط المشروع على GitHub:
+https://github.com/iH4xz/schedule-tool.git
+
+---
+
+[English / باللغة الإنجليزية]
+
+Project Title: Interactive Exam Schedule Tool
+Project Category: Web Development / Interactive Tools / Open Source Software
+
+Project Overview:
+An interactive web-based utility designed to help college students easily navigate, organize, and personalize their academic exam schedules. This tool addresses the clutter of massive college-wide exam schedules by providing a clean user interface where students can filter out non-relevant courses, build their own personalized schedules, and export them as plain text or PDF files.
+
+The Problem it Solves:
+Institutions often publish exam schedules in large PDF directories or massive spreadsheets packed with hundreds of courses. This forces students to manually search and map out their exam dates, times, and session windows. This tool digitizes the entire schedule, rendering a smart, interactive view personalized to each user.
+
+Key Features:
+1. Fully Bilingual: Seamless Arabic and English translation toggles matching browser and user preferences.
+2. Advanced Filtering: Ability to filter courses by level, code prefix/category, or program concentration.
+3. Instant Live Search: Real-time search that updates the interface as you type course names or codes.
+4. Client-side Persistence: Auto-saves the selected schedule to Local Storage so users do not lose their choices upon reload.
+5. Smart Exporting System:
+   - Copy selected schedules to the clipboard as well-formatted plain text.
+   - Export to print-ready A4 PDF layout or dynamically generated paginated PDFs.
+6. Safe Error Reporting: Built-in anti-spam form (protected by math challenges) allowing students to submit missing courses or date corrections directly to the administrator's Telegram bot.
+
+Technologies Used (Tech Stack):
+- Frontend: Responsive HTML5, CSS3 with dark/light styling and mobile optimization.
+- Logic: Lightweight Vanilla JavaScript for fast rendering and minimal overhead.
+- Backend: PHP for initial routing, security constraints, and processing Telegram Bot API interactions.
+- Data Storage: Structured JSON files (`data/`) enabling fast database-free schedule changes.
+
+Applied Security & Best Practices:
+- Decoupled configuration architecture keeping private Telegram API credentials in a gitignored config file (`config.php`).
+- Input escaping utilizing PHP `htmlspecialchars()` to sanitize user details, preventing Markdown API errors and form payload injections.
+- Apache server hardening using a custom `.htaccess` file to block public access to data directories and config files.
+
+License:
+Open-source code distributed under the GNU General Public License v3.0 (GPL-3.0).
+
+GitHub Repository Link:
+https://github.com/iH4xz/schedule-tool.git
